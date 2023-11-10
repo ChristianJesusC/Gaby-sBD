@@ -5,7 +5,7 @@ const empleadosController={
 
     agregarEmpleado: async (req,res)=>{
         try {
-            const empleado=new Emppleado({
+            const empleado=new Empleados({
                nombre:req.body.nombre,
                apellidoPaterno:req.body.apellidoPaterno,
                apellidoMaterno:req.body.apellidoMaterno,
@@ -16,10 +16,23 @@ const empleadosController={
                salario:req.body.salario,
                tipoEmpleao:req.body.tipoEmpledo
             })
-        } catch (error) {
-            
-        }
-    }
+            await empleado.save();
+            res.status(201).json(empleado);
+          } catch (error) {
+            res.status(400).json({ error: error.message });
+          }
+        },
+    eliminarEmpleado: async (req,res)=>{
+        try {
+            const empleado = await Producto.findByIdAndRemove(req.params.id);
+            if (!empleado) {
+              return res.status(404).json({ error: 'Producto no encontrado' });
+            }
+            res.json({ mensaje: 'Producto eliminado con éxito' });
+          } catch (error) {
+            res.status(500).json({ error: error.message });
+          }
+        },
 
 }
 
