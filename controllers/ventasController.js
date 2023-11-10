@@ -3,19 +3,31 @@ const express = require("express")
 
 const ventasController = {
 
-    agregarVenta: async (req, res) => {
-        try {
-            const venta = new Ventas({
-              fechaVenta: req.body.fechaVenta,
-              totalVenta: req.body.totalVenta,
-              productos_Id: req.body.productos_Id
-            });
-            await venta.save();
-            res.status(201).json(venta);
-          } catch (error) {
-            res.status(400).json({ error: error.message });
-          }
-        },
+   agregarVenta : async (req, res) => {
+    try {
+      const { fechaVenta, totalVenta, productos_Id } = req.body;
+
+      const fechaVentaSanitizada = new Date(fechaVenta);
+      if (!fechaVentaSanitizada || isNaN(fechaVentaSanitizada.getTime())) {
+        return res.status(400).send('La fecha de la venta debe ser válida');
+      }
+      if (!totalVenta || totalVenta <= 0) {
+        return res.status(400).send('El total de la venta debe ser un número mayor que 0');
+      }
+
+      const venta = new Ventas({
+        fechaVenta: fechaVentaSanitizada,
+        totalVenta: totalVenta,
+        productos_Id: productos_Id,
+      });
+  
+      await venta.save();
+      res.status(201).json(venta);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },
+  
 
     actualizarVenta: async (req, res) => {
         try {

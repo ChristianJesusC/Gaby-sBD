@@ -3,18 +3,24 @@ const express = require("express")
 
 const heladosController = {
 
-    agregarHelado: async (req, res) => {
-        try {
-            const helado = new Helados({
-              tipo: req.body.tipo,
-              productos_ID: req.body.productos_ID
-            });
-            await helado.save();
-            res.status(201).json(helado);
-          } catch (error) {
-            res.status(400).json({ error: error.message });
-          }
-        },
+   agregarHelado : async (req, res) => {
+    try {
+      const { tipo, productos_ID } = req.body;
+  
+      const tipoSanitizado = sanitizeHtml(tipo).trim();
+      if (!tipoSanitizado || tipoSanitizado.length < 3) {
+        return res.status(400).send('El tipo de helado debe tener al menos 3 caracteres');
+      }
+      const helado = new Helados({
+        tipo: tipoSanitizado,
+        productos_ID: productos_ID,
+      });
+      await helado.save();
+        res.status(201).json(helado);
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  },  
 
     eliminarHelado: async (req, res) => {
       try {
