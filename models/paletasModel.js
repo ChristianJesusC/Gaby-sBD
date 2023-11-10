@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const paletasSchema = new mongoose.Schema({
-   Tipo_Paleta: {
+   tipo_Paleta: {
       type: String,
       required: true
    },

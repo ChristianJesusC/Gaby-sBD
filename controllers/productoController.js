@@ -16,7 +16,7 @@ const productosController = {
           } catch (error) {
             res.status(400).json({ error: error.message });
           }
-        },
+    },
 
     eliminarProducto: async(req,res)=>{
       try {
@@ -44,12 +44,31 @@ const productosController = {
     
     obtenerTodoProductos: async (req,res)=>{
       try {
-        const productos = await Product.find();
+        const productos = await Producto.find();
         res.json(productos);
       } catch (error) {
         res.status(500).json({ error: error.message });
       }
-    }
+    },
+    actualizarProducto: async (req, res) => {
+      try {
+        const producto = await Producto.findById(req.params.id);
+        if (!empleado) {
+          return res.status(404).json({ error: 'Empleado no encontrado' });
+        }
+          producto.nombre= req.body.nombre,
+          producto.cantidad= req.body.cantidad,
+          producto.precioCosto= req.body.precioCosto,
+          producto.precioVenta= req.body.precioVenta
+
+        await producto.save();
+        res.json(producto);
+      } catch (error) {
+        res.status(400).json({ error: error.message });
+      }
+  },
+
+
 }
 
 module.exports = productosController;

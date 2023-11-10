@@ -5,7 +5,7 @@ const historialSchema = new mongoose.Schema({
       type: Date,
       required: true
    },
-   perfilAdministrador_ID: {
+   empleados_ID: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Productos",
       required: true

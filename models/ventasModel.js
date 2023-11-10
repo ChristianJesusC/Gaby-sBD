@@ -9,7 +9,7 @@ const ventasSchema = new mongoose.Schema({
       type: Number,
       required: true
    },
-   productosId: {
+   productos_Id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Productos",
       required: true
