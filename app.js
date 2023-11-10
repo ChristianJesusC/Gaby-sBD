@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const productoRouter= require("./routes/productosRoutes")
 
 app.use(express.json());
 
@@ -10,6 +11,8 @@ mongoose.connect('mongodb://localhost:27017/GabysBD', {
 });
 
 const connection = mongoose.connection;
+
+app.use('/api/productos', productoRouter);
 
 connection.once('open', () => {
    console.log('Conexión a la BD exitosa...');
