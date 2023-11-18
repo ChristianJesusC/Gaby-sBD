@@ -13,8 +13,16 @@ const empleadosSchema = new mongoose.Schema({
        type: String,
        required: true
    },
+   genero: {
+       type: String,
+       required: true
+   },
    edad: {
        type: Number,
+       required: true
+   },
+   fechaNacimiento: {
+       type: String,
        required: true
    },
    numTel: {
@@ -33,7 +41,7 @@ const empleadosSchema = new mongoose.Schema({
        type: Number,
        required: true
    },
-   tipoEmpleao: {
+   tipoEmpleado: {
         type: String,
         required: true
    }

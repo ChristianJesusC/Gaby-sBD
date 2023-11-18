@@ -1,43 +1,48 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
-const productoRouter= require("./routes/productosRoutes")
-const empleadoRouter= require("./routes/empleadosRoutes")
-const bebidasRouter= require("./routes/bebibasRoutes")
-const gastosRouter= require("./routes/gastosRoutes")
-const heladosRouter= require("./routes/heladosRoutes")
-const historialRouter= require("./routes/historialRoutes")
-const paletaRouter= require("./routes/paletaRoutes")
-const ventasRouter= require("./routes/ventasRoutes")
+const morgan = require("morgan")
 
+const productoRouter = require('./routes/productosRoutes');
+const empleadosRouter = require('./routes/empleadosRoutes');
+const bebidasRouter = require('./routes/bebibasRoutes');
+const gastosRouter = require('./routes/gastosRoutes');
+const heladosRouter = require('./routes/heladosRoutes');
+const historialRouter = require('./routes/historialRoutes');
+const paletaRouter = require('./routes/paletaRoutes');
+const ventasRouter = require('./routes/ventasRoutes');
+
+app.use(cors());
 app.use(express.json());
+app.use(morgan("dev"))
 
-mongoose.connect('mongodb://localhost:27017/GabysBD', {
-   useNewUrlParser: true,
-   useUnifiedTopology: true,
+mongoose.connect('mongodb://127.0.0.1:27017/GabyBD', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 const connection = mongoose.connection;
 
-app.use('/api/productos', productoRouter);
-app.use('/api/empleado', empleadoRouter);
-app.use('/api/bebidas', bebidasRouter);
-app.use('/api/gastos', gastosRouter);
-app.use('/api/helados', heladosRouter);
-app.use('/api/historial', historialRouter);
-app.use('/api/paleta', paletaRouter);
-app.use('/api/empleado', empleadoRouter);
+app.use('/productos', productoRouter);
+app.use('/empleados', empleadosRouter);
+app.use('/bebidas', bebidasRouter);
+app.use('/gastos', gastosRouter);
+app.use('/helados', heladosRouter);
+app.use('/historial', historialRouter);
+app.use('/paleta', paletaRouter);
+app.use('/ventas', ventasRouter);
 
 connection.once('open', () => {
-   console.log('Conexión a la BD exitosa...');
+  console.log('Conexión a la BD exitosa...');
 });
 
 connection.on('error', (err) => {
-   console.log('Error en la conexión a la BD: ', err);
+  console.log('Error en la conexión a la BD: ', err);
 });
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-   console.log(`Servidor en ejecución en el puerto ${PORT}`);
+  console.log(`Servidor en ejecución en el puerto ${PORT}`);
 });
