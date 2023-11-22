@@ -5,11 +5,22 @@ const paletasSchema = new mongoose.Schema({
       type: String,
       required: true
    },
-   Productos_ID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Productos",
+   sabor:{
+      type: String,
       required: true
-   }
+   },
+   cantidad: {
+      type: Number,
+      required: true
+    },
+    precioCosto: {
+      type: Number,
+      required: true
+    },
+    precioVenta: {
+      type: Number,
+      required: true
+    }
 });
 
 const Paletas = mongoose.model('Paletas', paletasSchema);

@@ -5,11 +5,18 @@ const bebidasSchema = new mongoose.Schema({
       type: String,
       required: true
    },
-   producto: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Productos",
+   cantidad: {
+      type: Number,
       required: true
-   }
+    },
+    precioCosto: {
+      type: Number,
+      required: true
+    },
+    precioVenta: {
+      type: Number,
+      required: true
+    }
 });
 
 const Bebidas = mongoose.model('Bebidas', bebidasSchema);

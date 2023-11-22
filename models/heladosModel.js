@@ -5,10 +5,22 @@ const heladosSchema = new mongoose.Schema({
       type: String,
       required: true
    },
-   productos_ID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Productos"
- }
+   sabor:{
+      type: String,
+      required: tru
+   },
+   cantidad: {
+      type: Number,
+      required: true
+    },
+    precioCosto: {
+      type: Number,
+      required: true
+    },
+    precioVenta: {
+      type: Number,
+      required: true
+    }
 });
 
 const Helados = mongoose.model('Helados', heladosSchema);
