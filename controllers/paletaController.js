@@ -5,20 +5,18 @@ const paletasController = {
 
   agregarPaleta : async (req, res) => {
     try {
-      const { tipo_Paleta, Productos_ID } = req.body;
-      const tipo_PaletaSanitizado = sanitizeHtml(tipo_Paleta).trim();
-
-      if (!tipo_PaletaSanitizado || tipo_PaletaSanitizado.length < 3) {
-        return res.status(400).send('El tipo de paleta debe tener al menos 3 caracteres');
-      }
-      const paleta = new Paletas({
-        tipo_Paleta: tipo_PaletaSanitizado,
-        Productos_ID: Productos_ID,
+      const { tipo_Paleta, sabor, cantidad, precioCosto, precioVenta } = req.body;
+      const nuevaPaleta = new Paletas({
+        tipo_Paleta,
+        sabor,
+        cantidad,
+        precioCosto,
+        precioVenta
       });
-      await paleta.save();
-      res.status(201).json(paleta);
+      const paletaGuardada = await nuevaPaleta.save();
+      res.status(201).json(paletaGuardada);
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      res.status(500).json({ error: 'Ocurrió un error al guardar la paleta' });
     }
   },
   
