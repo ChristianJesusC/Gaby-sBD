@@ -3,7 +3,7 @@ const ventasController = require('../controllers/ventasController');
 
 const router = express.Router();
 
-router.post('/', ventasController.agregarVenta);
+router.post('/agregarVenta', ventasController.agregarVenta);
 router.get('/:id', ventasController.obtenerUnaVenta);
 router.get('/', ventasController.obtenerTodasVentas);
 router.delete('/:id', ventasController.eliminarVenta);

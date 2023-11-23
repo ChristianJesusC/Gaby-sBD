@@ -5,20 +5,11 @@ const ventasController = {
 
    agregarVenta : async (req, res) => {
     try {
-      const { fechaVenta, totalVenta, productos_Id } = req.body;
-
-      const fechaVentaSanitizada = new Date(fechaVenta);
-      if (!fechaVentaSanitizada || isNaN(fechaVentaSanitizada.getTime())) {
-        return res.status(400).send('La fecha de la venta debe ser válida');
-      }
-      if (!totalVenta || totalVenta <= 0) {
-        return res.status(400).send('El total de la venta debe ser un número mayor que 0');
-      }
-
-      const venta = new Ventas({
-        fechaVenta: fechaVentaSanitizada,
+      const { fechaVenta, totalVenta, nombres} = req.body;
+        const venta = new Ventas({
+        fechaVenta: fechaVenta,
         totalVenta: totalVenta,
-        productos_Id: productos_Id,
+        nombres: nombres,
       });
   
       await venta.save();
