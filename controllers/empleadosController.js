@@ -87,24 +87,31 @@ const empleadosController = {
     }
   },
 
- iniciarSesion: async (req, res) => {
-  const { correo, contraseña } = req.body;
-  try {
-    const empleado = await Empleado.findOne({ correo });
-    if (empleado) {
-      const contraseñaCoincide = await bcrypt.compare(contraseña, empleado.contraseña);
-      if (contraseñaCoincide) {
-        res.json({ mensaje: 'Inicio de sesión exitoso' });
+  iniciarSesion: async (req, res) => {
+    const { correo, contraseña } = req.body;
+    try {
+      const empleado = await Empleado.findOne({ correo });
+      if (empleado) {
+        const contraseñaCoincide = await bcrypt.compare(contraseña, empleado.contraseña);
+        if (contraseñaCoincide) {
+          const { _id, nombre, apellido, puesto } = empleado;
+          const empleadoInfo = {
+            _id,
+            nombre,
+            apellido,
+            puesto
+          };
+          res.json({ mensaje: 'Inicio de sesión exitoso', empleado: empleadoInfo });
+        } else {
+          res.status(401).json({ error: 'Credenciales incorrectas' });
+        }
       } else {
         res.status(401).json({ error: 'Credenciales incorrectas' });
       }
-    } else {
-      res.status(401).json({ error: 'Credenciales incorrectas' });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
   }
-},
 }
 
 module.exports = empleadosController

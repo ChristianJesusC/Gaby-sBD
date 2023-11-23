@@ -7,7 +7,7 @@ const heladosSchema = new mongoose.Schema({
    },
    sabor:{
       type: String,
-      required: tru
+      required: true
    },
    cantidad: {
       type: Number,

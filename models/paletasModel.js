@@ -5,24 +5,24 @@ const paletasSchema = new mongoose.Schema({
       type: String,
       required: true
    },
-   sabor:{
+   sabor: {
       type: String,
       required: true
    },
    cantidad: {
       type: Number,
       required: true
-    },
-    precioCosto: {
+   },
+   precioCosto: {
       type: Number,
       required: true
-    },
-    precioVenta: {
+   },
+   precioVenta: {
       type: Number,
       required: true
-    }
+   }
 });
 
 const Paletas = mongoose.model('Paletas', paletasSchema);
 
-module.exports = Paletas;
+module.exports = Paletas;

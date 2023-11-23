@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
 
 const historialSchema = new mongoose.Schema({
-   fecha: {
-      type: Date,
+   empleadoId:{
+      type: mongoose.Schema.Types.ObjectId,
       required: true
    },
-   empleados_ID: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Productos",
+   nombre: {
+      type: String,
+      required: true
+   },
+   fecha: {
+      type: String,
       required: true
    }
 });
