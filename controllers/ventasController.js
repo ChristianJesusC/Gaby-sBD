@@ -1,5 +1,6 @@
 const Ventas = require('../models/ventasModel');
 const express = require("express")
+const { Server } = require('socket.io');
 
 const ventasController = {
 
