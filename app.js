@@ -15,7 +15,7 @@ const io = require("socket.io")(server,{
 
 const conectarAMongoDB = async () => {
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/GabyBD', {
+    await mongoose.connect('mongodb+srv://223735:jesuschiu123@gabybd.4ihqg4k.mongodb.net/GabyBD', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
