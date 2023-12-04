@@ -81,6 +81,7 @@ const empleadosController = {
       if (!empleado) {
         return res.status(404).json({ error: 'Empleado no encontrado' });
       }
+      console.log
       res.json(empleado);
     } catch (error) {
       res.status(500).json({ error: error.message });
