@@ -20,14 +20,13 @@ const conectarAMongoDB = async () => {
       useUnifiedTopology: true,
       useCreateIndex: true,
       useFindAndModify: false,
-      user: '223735',
-      pass: 'jesuschiu123',
     });
     console.log('Conexión a MongoDB exitosa');
   } catch (error) {
     console.error('Error en la conexión a MongoDB:', error);
   }
 };
+
 
 conectarAMongoDB();
 
