@@ -15,7 +15,7 @@ const io = require("socket.io")(server,{
 
 const conectarAMongoDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://223735:jesuschiu123@gabybd.4ihqg4k.mongodb.net/?retryWrites=true&w=majority/', {
+    await mongoose.connect('mongodb+srv://223735:jesuschiu123@gabybd.4ihqg4k.mongodb.net/?retryWrites=true', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
