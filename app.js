@@ -15,14 +15,13 @@ const io = require("socket.io")(server,{
 
 const conectarAMongoDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://223735:jesuschiu123@gabybd.4ihqg4k.mongodb.net/GabyBD', {
+    await mongoose.connect('mongodb+srv://render:api123@gabybd.4ihqg4k.mongodb.net/?retryWrites=true&w=majority', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log('Conexión a MongoDB exitosa');
   } catch (error) {
     console.error('Error en la conexión a MongoDB:', error);
-    process.exit(1);
   }
 };
 
