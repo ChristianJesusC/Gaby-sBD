@@ -18,6 +18,10 @@ const conectarAMongoDB = async () => {
     await mongoose.connect('mongodb+srv://223735:jesuschiu123@gabybd.4ihqg4k.mongodb.net/GabyBD', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      user: '223735',
+      pass: 'jesuschiu123',
     });
     console.log('Conexión a MongoDB exitosa');
   } catch (error) {
